@@ -28,8 +28,8 @@ public class TimePoint implements Comparable<TimePoint>{
 	
 	@Override
 	public int compareTo(TimePoint o) {
-		// TODO Auto-generated method stub
-		return 0;
+		int res = Integer.compare(this.convert(TimeUnit.SECOND).getAmount(), o.convert(TimeUnit.SECOND).getAmount());
+	    return res;
 	}
 	@Override
 	public int hashCode() {

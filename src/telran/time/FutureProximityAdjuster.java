@@ -1,13 +1,18 @@
 package telran.time;
 
+import telran.util.Arrays;
+
 public class FutureProximityAdjuster implements TimePointAdjuster{
-TimePoint[] timePoints;
+TimePoint[] timePoints; 
+
 public FutureProximityAdjuster(TimePoint[] points) {
-	//TODO
+	 this.timePoints = Arrays.copy(points);
+	 Arrays.bubbleSort(this.timePoints);	
+	
 }
 	@Override
 	public TimePoint adjust(TimePoint point) {
-		// TODO Auto-generated method stub
+		//TODO
 		return null;
 	}
 
