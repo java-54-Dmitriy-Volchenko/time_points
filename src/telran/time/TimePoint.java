@@ -1,5 +1,7 @@
 package telran.time;
 
+import java.util.Objects;
+
 public class TimePoint implements Comparable<TimePoint>{
 	int amount;
 	TimeUnit timeUnit;
@@ -14,24 +16,35 @@ public class TimePoint implements Comparable<TimePoint>{
 		return timeUnit;
 	}
 	public TimePoint convert(TimeUnit unit) {
-		// TODO Auto-generated method stub
-		//returns new TimePoint with a given TimeUnit
-		return null;
+		int seconds = this.amount * this.timeUnit.getValue();
+		int actualAmount = seconds/unit.getValue();
+		return this.timeUnit.equals(unit)?this:new TimePoint(actualAmount, unit);
+		
 	}
 	public TimePoint with(TimePointAdjuster adjuster) {
-		//TODO
-		//returns new TimePoint based on any TimePointAdjuster
-		return null;
+		
+		return adjuster.adjust(this);
 	}
+	
 	@Override
 	public int compareTo(TimePoint o) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	@Override
+	public int hashCode() {
+		return Objects.hash(amount, timeUnit);
+	}
+	@Override
 	public boolean equals(Object obj) {
-		//TODO
-		return false;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TimePoint other = (TimePoint) obj;
+		return amount == other.amount && timeUnit == other.timeUnit;
 	}
 	
 	

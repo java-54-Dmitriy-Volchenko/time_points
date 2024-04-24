@@ -19,6 +19,7 @@ class TimePointTest {
 		assertEquals(36000, point4.getAmount());
 		TimePoint point5 = TimeUnit.HOUR.between(point1, point2);
 		assertEquals(10, point5.getAmount());
+	
 	}
 	@Test
 	void convertTest() {
