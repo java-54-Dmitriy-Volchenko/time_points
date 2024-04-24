@@ -37,7 +37,17 @@ class TimePointTest {
 	}
 	@Test
 	void timePointEqualsTest() {
-		//TODO
+		TimePoint first = new TimePoint (1, TimeUnit.HOUR);	
+		TimePoint second = new TimePoint (1, TimeUnit.HOUR);
+		TimePoint third = new TimePoint (1, TimeUnit.MINUTE);	
+		TimePoint fourth = new TimePoint (60, TimeUnit.MINUTE);
+		assertTrue(first.equals(first));
+		assertFalse(first.equals(null));		
+		assertTrue(first.equals(second));
+		assertFalse(first.equals(third));
+		assertTrue(first.equals(fourth));
+		
+		
 	}
 	@Test
 	void timePointCompareToTest() {

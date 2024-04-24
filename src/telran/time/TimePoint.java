@@ -43,8 +43,11 @@ public class TimePoint implements Comparable<TimePoint>{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TimePoint other = (TimePoint) obj;
-		return amount == other.amount && timeUnit == other.timeUnit;
+		 TimePoint other = (TimePoint) obj;
+		 TimePoint thisSec = this.convert(TimeUnit.SECOND);
+		 TimePoint otherSec = other.convert(TimeUnit.SECOND);		
+		
+		return thisSec.getAmount()==otherSec.getAmount();
 	}
 	
 	
