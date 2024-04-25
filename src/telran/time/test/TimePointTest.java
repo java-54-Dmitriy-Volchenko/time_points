@@ -57,7 +57,34 @@ class TimePointTest {
 	}
 	@Test
 	void futureProximityAdjusterTest() {
-		//TODO
+		TimePoint zeroIdx = new TimePoint(2, TimeUnit.HOUR);//6
+		TimePoint oneIdx = new TimePoint(5, TimeUnit.MINUTE);//4
+		TimePoint twoIdx = new TimePoint(15, TimeUnit.SECOND);//1
+		TimePoint threeIdx = new TimePoint(1, TimeUnit.MINUTE);//3
+		TimePoint foreIdx = new TimePoint(3, TimeUnit.HOUR);//7
+		TimePoint fiveIdx = new TimePoint(25, TimeUnit.MINUTE);//5
+		TimePoint sixIdx = new TimePoint(0, TimeUnit.MINUTE);//0
+		TimePoint sevenIdx = new TimePoint(12, TimeUnit.HOUR);//8
+		TimePoint eightIdx = new TimePoint(30, TimeUnit.SECOND);//2
+		
+		TimePoint[]points = {zeroIdx,oneIdx,twoIdx,threeIdx, foreIdx, fiveIdx, sixIdx, sevenIdx, eightIdx};
+		TimePoint point1 = new TimePoint(0, TimeUnit.MINUTE);		
+		TimePoint actual1 = point1.with(new FutureProximityAdjuster(points));		
+		assertEquals(15, actual1.getAmount());
+		TimePoint point2 = new TimePoint(3, TimeUnit.HOUR);		
+		TimePoint actual2 = point2.with(new FutureProximityAdjuster(points));		
+		assertEquals(12, actual2.getAmount());
+		TimePoint point3 = new TimePoint(26, TimeUnit.MINUTE);		
+		TimePoint actual3 = point3.with(new FutureProximityAdjuster(points));		
+		assertEquals(2, actual3.getAmount());
+		TimePoint point4 = new TimePoint(31, TimeUnit.SECOND);		
+		TimePoint actual4 = point4.with(new FutureProximityAdjuster(points));		
+		assertEquals(1, actual4.getAmount());
+		TimePoint point5 = new TimePoint(721, TimeUnit.MINUTE);		
+		assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
+	            point5.with(new FutureProximityAdjuster(points)); 
+	        });
+	    }	
+		
 	}
 
-}
