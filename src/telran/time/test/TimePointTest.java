@@ -53,7 +53,16 @@ class TimePointTest {
 	}
 	@Test
 	void timePointCompareToTest() {
-		//TODO
+		TimePoint first = new TimePoint (1, TimeUnit.HOUR);	
+		TimePoint second = new TimePoint (1, TimeUnit.HOUR);
+		TimePoint third = new TimePoint (1, TimeUnit.MINUTE);	
+		TimePoint fourth = new TimePoint (60, TimeUnit.MINUTE);
+		TimePoint fifth = new TimePoint (3600, TimeUnit.SECOND);
+		assertTrue(first.compareTo(second)==0);
+		assertTrue(first.compareTo(fourth)==0);
+		assertTrue(first.compareTo(third)>0);
+		assertTrue(fifth.compareTo(third)>0);
+		assertTrue(third.compareTo(fifth)<0);
 	}
 	@Test
 	void futureProximityAdjusterTest() {

@@ -7,12 +7,9 @@ TimePoint[] timePoints;
 
 public FutureProximityAdjuster(TimePoint[] points) {
 	 this.timePoints = Arrays.copy(points);
-	 Arrays.bubbleSort(this.timePoints);	
+	 Arrays.bubbleSort(this.timePoints, (a,b)->a.compareTo(b));	
 	
 }
-
-
-
 
 
 @Override
