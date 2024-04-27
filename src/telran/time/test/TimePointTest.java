@@ -69,14 +69,16 @@ class TimePointTest {
 		TimePoint zeroIdx = new TimePoint(2, TimeUnit.HOUR);//6
 		TimePoint oneIdx = new TimePoint(5, TimeUnit.MINUTE);//4
 		TimePoint twoIdx = new TimePoint(15, TimeUnit.SECOND);//1
-		TimePoint threeIdx = new TimePoint(1, TimeUnit.MINUTE);//3
+		TimePoint threeIdx = new TimePoint(1, TimeUnit.MINUTE);//3.2
 		TimePoint foreIdx = new TimePoint(3, TimeUnit.HOUR);//7
 		TimePoint fiveIdx = new TimePoint(25, TimeUnit.MINUTE);//5
 		TimePoint sixIdx = new TimePoint(0, TimeUnit.MINUTE);//0
 		TimePoint sevenIdx = new TimePoint(12, TimeUnit.HOUR);//8
-		TimePoint eightIdx = new TimePoint(30, TimeUnit.SECOND);//2
+		TimePoint eightIdx = new TimePoint(30, TimeUnit.SECOND);//2.1
+		TimePoint nineIdx = new TimePoint(30, TimeUnit.SECOND);//2.2
+		TimePoint tenIdx = new TimePoint(60, TimeUnit.SECOND);//3.1
 		
-		TimePoint[]points = {zeroIdx,oneIdx,twoIdx,threeIdx, foreIdx, fiveIdx, sixIdx, sevenIdx, eightIdx};
+		TimePoint[]points = {zeroIdx,oneIdx,twoIdx,threeIdx, foreIdx, fiveIdx, sixIdx, sevenIdx, eightIdx, nineIdx, tenIdx};
 		TimePoint point1 = new TimePoint(0, TimeUnit.MINUTE);		
 		TimePoint actual1 = point1.with(new FutureProximityAdjuster(points));		
 		assertEquals(15, actual1.getAmount());
@@ -93,6 +95,14 @@ class TimePointTest {
 		assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
 	            point5.with(new FutureProximityAdjuster(points)); 
 	        });
+		
+		TimePoint point6 = new TimePoint(30, TimeUnit.SECOND);		
+		TimePoint actual6 = point6.with(new FutureProximityAdjuster(points));		
+		assertEquals(1, actual6.getAmount());
+		
+		TimePoint point7 = new TimePoint(60, TimeUnit.SECOND);		
+		TimePoint actual7 = point7.with(new FutureProximityAdjuster(points));		
+		assertEquals(5, actual7.getAmount());
 	    }	
 		
 	}
