@@ -91,10 +91,10 @@ class TimePointTest {
 		TimePoint point4 = new TimePoint(31, TimeUnit.SECOND);		
 		TimePoint actual4 = point4.with(new FutureProximityAdjuster(points));		
 		assertEquals(1, actual4.getAmount());
-		TimePoint point5 = new TimePoint(721, TimeUnit.MINUTE);		
-		assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
-	            point5.with(new FutureProximityAdjuster(points)); 
-	        });
+		
+		TimePoint point5 = new TimePoint(721, TimeUnit.MINUTE);	
+		TimePoint actual5 = point5.with(new FutureProximityAdjuster(points));
+	    assertTrue(actual5==null);
 		
 		TimePoint point6 = new TimePoint(30, TimeUnit.SECOND);		
 		TimePoint actual6 = point6.with(new FutureProximityAdjuster(points));		
