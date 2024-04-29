@@ -110,11 +110,13 @@ class TimePointTest {
 		TimePoint threeIdxs = new TimePoint(13, TimeUnit.HOUR);//1
 		TimePoint foreIdxs = new TimePoint(12, TimeUnit.HOUR);//0
 		
+		//teacjer's test
 		TimePoint[]points1 = {zeroIdxs,oneIdxs,twoIdxs,threeIdxs, foreIdxs};
+		//this one works without any corrections
 		TimePoint point11 = new TimePoint(14, TimeUnit.HOUR);		
 		TimePoint actual11 = point11.with(new FutureProximityAdjuster(points1));		
 		assertEquals(20, actual11.getAmount());		
-		
+		//this one works after correction
 		TimePoint point12 = new TimePoint(20, TimeUnit.HOUR);		
 		TimePoint actual12 = point12.with(new FutureProximityAdjuster(points1));		
 		assertTrue(actual12==null);
