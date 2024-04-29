@@ -120,7 +120,56 @@ class TimePointTest {
 		TimePoint point12 = new TimePoint(20, TimeUnit.HOUR);		
 		TimePoint actual12 = point12.with(new FutureProximityAdjuster(points1));		
 		assertTrue(actual12==null);
-	    }	
 		
-	}
+		TimePoint zeroIdxss = new TimePoint(20, TimeUnit.HOUR);//2		
+		TimePoint oneIdxss = new TimePoint(14, TimeUnit.HOUR);//1
+		TimePoint twoIdxss = new TimePoint(13, TimeUnit.HOUR);//0
+		
+		
+		
+		TimePoint[]points2 = {zeroIdxss,oneIdxss,twoIdxss};
+		
+		TimePoint point13 = new TimePoint(15, TimeUnit.HOUR);		
+		TimePoint actual13 = point13.with(new FutureProximityAdjuster(points2));		
+		assertEquals(20, actual13.getAmount());		
+		
+		
+		TimePoint zeroIdxssa = new TimePoint(20, TimeUnit.HOUR);//1		
+		TimePoint oneIdxssa = new TimePoint(14, TimeUnit.HOUR);//0
+		
+		
+		TimePoint[]points3 = {zeroIdxssa,oneIdxssa};
+		
+		TimePoint point14 = new TimePoint(15, TimeUnit.HOUR);		
+		TimePoint actual14 = point14.with(new FutureProximityAdjuster(points3));		
+		assertEquals(20, actual14.getAmount());	
+		
+		TimePoint point15 = new TimePoint(20, TimeUnit.HOUR);		
+		TimePoint actual15 = point15.with(new FutureProximityAdjuster(points3));		
+		assertTrue(actual15==null);
+		
+		TimePoint zeroIdxssab = new TimePoint(20, TimeUnit.HOUR);//0	
+		
+		TimePoint[]points4 = {zeroIdxssab};
+		
+		TimePoint point16 = new TimePoint(15, TimeUnit.HOUR);		
+		TimePoint actual16 = point16.with(new FutureProximityAdjuster(points4));		
+		assertEquals(20, actual16.getAmount());	
+		
+		TimePoint point17 = new TimePoint(20, TimeUnit.HOUR);		
+		TimePoint actual17 = point17.with(new FutureProximityAdjuster(points3));		
+		assertTrue(actual17==null);
+		
+		TimePoint[]points5 = {};
+		
+		TimePoint point18 = new TimePoint(20, TimeUnit.HOUR);		
+		TimePoint actual18 = point18.with(new FutureProximityAdjuster(points5));		
+		assertTrue(actual18==null);
+		
+	    }	
+	
+	 	
+	 	
+    }	
+	
 
